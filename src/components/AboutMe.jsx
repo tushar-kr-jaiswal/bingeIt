@@ -1,6 +1,8 @@
 import React from "react";
 
 const AboutMe = () => {
+  document.title = "BingeIt | About";
+
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white px-5">
       <div className="max-w-lg text-center bg-gray-800/50 backdrop-blur-lg p-10 rounded-2xl shadow-[0_0_20px_rgba(0,255,255,0.5)] border border-gray-700">
