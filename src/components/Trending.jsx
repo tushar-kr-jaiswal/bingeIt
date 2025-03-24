@@ -42,7 +42,7 @@ function Trending() {
   }, [category, duration]);
 
   return (
-    <div className="relative w-full min-h-screen bg-[#1F1E24] overflow-y-hidden">
+    <div className="relative w-full max-h-screen bg-[#1F1E24] overflow-y-hidden">
       <nav className="w-full min-h-[10vh] py-5 md:px-5 flex items-center fixed top-0 z-50 bg-opacity-60 backdrop-blur-xl shadow-lg md:flex-row flex-col bg-[#1F1E24]">
         {/* Go back btn */}
         <div className="flex items-center md:px-10 md:w-2/10 gap-x-4 w-full md:flex-none justify-between px-5">
@@ -98,7 +98,10 @@ function Trending() {
       <div
         id="scrollableDiv"
         className="w-full mt-[18vh] bg-[#1F1E24] overflow-auto"
-        style={{ height: "calc(100vh - 18vh)" }} // Adjusts height dynamically
+        style={{
+          height: "calc(100vh - 18vh)", // Ensures div takes up remaining viewport height
+          overflowY: "auto", // Allows scrolling only inside this div
+        }}
       >
         {trending.length === 0 ? (
           <Loader />
