@@ -42,7 +42,7 @@ function Trending() {
   }, [category, duration]);
 
   return (
-    <div className="relative w-full min-h-screen bg-[#1F1E24] overflow-hidden">
+    <div className="relative w-full min-h-screen bg-[#1F1E24] overflow-y-hidden">
       <nav className="w-full min-h-[10vh] py-5 md:px-5 flex items-center fixed top-0 z-50 bg-opacity-60 backdrop-blur-xl shadow-lg md:flex-row flex-col bg-[#1F1E24]">
         {/* Go back btn */}
         <div className="flex items-center md:px-10 md:w-2/10 gap-x-4 w-full md:flex-none justify-between px-5">
