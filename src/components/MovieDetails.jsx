@@ -1,4 +1,4 @@
-import React, { Children, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncLoadMovie, removeMovie } from "../store/actions/movieActions.jsx";
 import {

@@ -83,19 +83,26 @@ function TvShows() {
       </nav>
       <div
         id="scrollableDiv"
-        className="w-full md:mt-[18vh] mt-[32vh] bg-[#1F1E24] overflow-auto"
-        style={{ height: "calc(100vh - 18vh)" }} // Adjusts height dynamically
+        className="w-full mt-[18vh] bg-[#1F1E24] overflow-auto"
+        style={{
+          height: "calc(100vh - 18vh)", // Ensures div takes up remaining viewport height
+          overflowY: "auto", // Allows scrolling only inside this div
+        }}
       >
-        <InfiniteScroll
-          dataLength={tvShows.length}
-          next={getTvShows}
-          hasMore={hasMore}
-          loader={<Loader />}
-          scrollableTarget="scrollableDiv" // Ensures only this div scrolls
-          //   threshold={100} // scroll threshold ko 100px set kiya hai
-        >
-          <Cards data={tvShows} title="tv" />
-        </InfiniteScroll>
+        {tvShows.length === 0 ? (
+          <Loader />
+        ) : (
+          <InfiniteScroll
+            dataLength={tvShows.length}
+            next={getTvShows}
+            hasMore={hasMore}
+            loader={<Loader />}
+            scrollableTarget="scrollableDiv" // Ensures only this div scrolls
+            //   threshold={100} // scroll threshold ko 100px set kiya hai
+          >
+            <Cards data={tvShows} title="tv" />
+          </InfiniteScroll>
+        )}
       </div>
     </div>
   ) : (

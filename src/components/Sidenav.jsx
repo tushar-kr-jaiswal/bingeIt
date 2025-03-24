@@ -80,13 +80,6 @@ function Sidenav({ open, setOpen }) {
           <i className="ri-information-2-fill text-[3.7vh] mr-2"></i>
           About Me
         </Link>
-        <Link
-          to="/contact"
-          className="hover:bg-[#6556cd] hover:text-white py-1.5 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl px-2 flex items-center w-full"
-        >
-          <i className="ri-phone-fill text-[3.7vh] mr-2 text-[#05DF72]"></i>
-          Contact Me
-        </Link>
       </nav>
     </div>
   ) : (
