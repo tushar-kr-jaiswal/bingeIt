@@ -70,7 +70,7 @@ function Trending() {
 
                 {/* Search */}
                 <div className="w-full md:w-7/12">
-                    <SearchBar />
+                    <Topnav />
                 </div>
 
                 {/* Dropdowns */}
