@@ -41,7 +41,7 @@ function Home() {
   }, [category]);
 
   return wallpaper && trending ? (
-    <div className="w-full h-full flex bg-[#1F1E24] overflow-hidden">
+    <div className="w-full min-h-screen flex bg-[#1F1E24] overflow-x-hidden overflow-y-auto">
       {/* Sidebar */}
       <div
         className={`${

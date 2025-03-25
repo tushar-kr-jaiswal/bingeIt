@@ -51,7 +51,7 @@ function MovieDetails() {
       className="relative w-full min-h-[150vh] overflow-y-auto overflow-x-hidden"
     >
       <nav
-        className="h-[10vh] py-5 px-5 flex items-center bg-opacity-60 backdrop-blur-xl border-0 border-gray-600 shadow-lg gap-x-10 bg-black/50 rounded-r-full md:w-5/12 lg:w-5/12 xl:w-3/12 sm:w-5/12 w-10/12
+        className="h-[10vh] py-5 px-5 flex items-center bg-opacity-60 backdrop-blur-xl border-0 border-gray-600 shadow-lg gap-x-10 bg-zinc-100/10 rounded-r-full md:w-5/12 lg:w-5/12 xl:w-3/12 sm:w-5/12 w-10/12
       "
       >
         <button onClick={() => navigate("/")} className="cursor-pointer">

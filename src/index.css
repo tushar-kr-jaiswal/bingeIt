@@ -84,5 +84,9 @@ select::-ms-expand {
 html,
 body {
   height: 100%;
-  overflow: hidden;
+}
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
 }

@@ -83,11 +83,7 @@ function TvShows() {
       </nav>
       <div
         id="scrollableDiv"
-        className="w-full mt-[18vh] bg-[#1F1E24] overflow-auto"
-        style={{
-          height: "calc(100vh - 18vh)", // Ensures div takes up remaining viewport height
-          overflowY: "auto", // Allows scrolling only inside this div
-        }}
+        className="w-full mt-[30vh] md:mt-[20vh] bg-[#1F1E24] overflow-auto h-[calc(100vh-30vh)] md:h-[calc(100vh-20vh)]"
       >
         {tvShows.length === 0 ? (
           <Loader />

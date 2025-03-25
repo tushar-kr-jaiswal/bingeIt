@@ -4,7 +4,7 @@ A modern web application for tracking and discovering your favorite TV shows, mo
 
 ## Live Link
 
-🌐 [Visit BingeIt]()
+🌐 [Visit BingeIt](https://bingeit-six.vercel.app/)
 
 ## Features
 

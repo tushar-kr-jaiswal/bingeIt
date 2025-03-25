@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   asyncLoadperson,
   removePerson,
@@ -14,7 +14,7 @@ function PersonDetails() {
   const { id } = useParams();
   const { info } = useSelector((state) => state.person);
   const [category, setCategory] = useState("movie");
-  // console.log(info);
+  console.log(info);
   // detail.original_title || title
   // detail.release_date
 
@@ -26,9 +26,25 @@ function PersonDetails() {
     };
   }, [id]);
   return info ? (
-    <div className="relative w-full min-h-screen overflow-hidden bg-zinc-900">
+    <div
+      // style={{
+      //     backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent), url(${
+      //         info.detail.backdrop_path || info.detail.poster_path || info.detail.profile_path
+      //             ? `https://image.tmdb.org/t/p/original/${
+      //                   info.detail.backdrop_path ||
+      //                   info.detail.poster_path ||
+      //                   info.detail.profile_path
+      //               }`
+      //             : "https://via.placeholder.com/500x300" // ✅ This ensures a fallback image
+      //     })`,
+      //     backgroundPosition: "center",
+      //     backgroundRepeat: "no-repeat",
+      //     backgroundSize: "cover",
+      // }}
+      className="relative w-full min-h-screen bg-zinc-900 overflow-hidden"
+    >
       <nav
-        className="h-[10vh] py-5 px-5 flex items-center bg-opacity-60 backdrop-blur-xl border-0 border-gray-600 shadow-lg gap-x-10 bg-white/10 rounded-r-full md:w-5/12 lg:w-5/12 xl:w-3/12 sm:w-5/12 w-10/12
+        className="h-[10vh] py-5 px-5 flex items-center bg-opacity-60 backdrop-blur-xl border-0 border-gray-600 shadow-lg gap-x-10 bg-zinc-100/10 rounded-r-full md:w-4/12 lg:w-3/12 xl:w-2/12 sm:w-5/12 w-8/12 
       "
       >
         <button onClick={() => navigate("/")} className="cursor-pointer">
@@ -47,9 +63,6 @@ function PersonDetails() {
             />
           </svg>
         </button>
-        <a href={info.detail.homepage} target="_blank">
-          <i className="text-2xl text-white ri-external-link-line"></i>
-        </a>
         <a
           href={`https://www.wikidata.org/wiki/${info.externalId.wikidata_id}`}
           target="_blank"
@@ -57,7 +70,7 @@ function PersonDetails() {
           <i className="text-2xl text-blue-500 bg-green-400 rounded-full ri-earth-fill"></i>
         </a>
         <a
-          href={`https://www.imdb.com/title/${info.externalId.imdb_id}`}
+          href={`https://www.imdb.com/name/${info.externalId.imdb_id}`}
           target="_blank"
         >
           <img
@@ -68,9 +81,9 @@ function PersonDetails() {
         </a>
       </nav>
 
-      <div className="w-full md:max-h-[80vh] overflow-hidden px-10 md:px-24 flex justify-center gap-x-2 mt-20 flex-col md:flex-row gap-y-3">
+      <div className="w-full min-h-fit flex justify-center gap-x-2 md:mt-20 px-5 md:flex-row flex-col mt-10 gap-y-5">
         {/* Half screen for image and platform  */}
-        <div className="md:w-4/12 w-full h-full">
+        <div className="md:w-4/12 h-full w-full flex justify-center md:flex-none">
           <img
             src={
               info?.detail?.profile_path
@@ -83,9 +96,9 @@ function PersonDetails() {
         </div>
 
         {/*  Half screen to show stuff about movie */}
-        <div className="md:w-8/12 w-full h-full text-zinc-200">
-          <h1 className="text-[4vh] md:text-[5vh]">{info.detail.name}</h1>
-          <div className="flex flex-col gap-y-3 ">
+        <div className="md:w-8/12 h-full text-zinc-200 w-full px-5">
+          <h1 className="text-[5vh]">{info.detail.name}</h1>
+          <div className="flex flex-col gap-y-3">
             <h5>Known For : {info.detail.known_for_department}</h5>
             <h5>Gender : {info.detail.gender === 1 ? "Female" : "Male"}</h5>
             <h5>Birthday : {info.detail.birthday}</h5>
@@ -96,59 +109,49 @@ function PersonDetails() {
                 : info.detail.deathday}
             </h5>
             <h5>Place of Birth : {info.detail.place_of_birth}</h5>
-            <div className="flex gap-x-3 items-center w-full">
+            <div className="flex gap-x-3 items-center md:flex-row flex-col">
               <h5 className="mr-5">Social Media :</h5>{" "}
-              {info.externalId.imdb !== null ? (
-                <a
-                  href={`https://www.imdb.com/title/${info.externalId.imdb_id}`}
-                  target="_blank"
-                >
-                  <img
-                    src="/icons/imdb.svg"
-                    alt="imdb logo"
-                    className="xl:w-12 h-auto w-20"
-                  />
-                </a>
-              ) : null}
-              {info.externalId.instagram_id !== null ? (
-                <a
-                  href={`https://www.instagram.com/${info.externalId.instagram_id}/`}
-                  target="_blank"
-                >
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
-                    alt="Instagram Logo"
-                    width="25"
-                  />
-                </a>
-              ) : null}
-              {info.externalId.twitter_id !== null ? (
-                <a
-                  href={`https://www.twitter.com/${info.externalId.twitter_id}/`}
-                  target="_blank"
-                >
-                  <i className="text-3xl rounded-full ri-twitter-x-line"></i>
-                </a>
-              ) : null}
-              {info.externalId.youtube_id !== null ? (
-                <a
-                  href={`https://www.youtube.com/${info.externalId.youtube_id}/`}
-                  target="_blank"
-                >
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
-                    alt="YouTube Logo"
-                    className="bg-white rounded-sm"
-                    width="100"
-                  />
-                </a>
-              ) : null}
+              <div className="flex gap-x-3 items-center">
+                {info.externalId.instagram_id !== null ? (
+                  <a
+                    href={`https://www.instagram.com/${info.externalId.instagram_id}/`}
+                    target="_blank"
+                  >
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+                      alt="Instagram Logo"
+                      width="25"
+                    />
+                  </a>
+                ) : null}
+                {info.externalId.twitter_id !== null ? (
+                  <a
+                    href={`https://www.twitter.com/${info.externalId.twitter_id}/`}
+                    target="_blank"
+                  >
+                    <i className="text-3xl rounded-full ri-twitter-x-line"></i>
+                  </a>
+                ) : null}
+                {info.externalId.youtube_id !== null ? (
+                  <a
+                    href={`https://www.youtube.com/${info.externalId.youtube_id}/`}
+                    target="_blank"
+                  >
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
+                      alt="YouTube Logo"
+                      className="bg-white rounded-sm"
+                      width="100"
+                    />
+                  </a>
+                ) : null}
+              </div>
             </div>
             <p>Also Known as : {info.detail.also_known_as?.join(", ")}</p>
           </div>
         </div>
       </div>
-      <div className="md:px-24 mt-5 w-full text-white px-5">
+      <div className="md:px-24 px-10 mt-5 w-full text-white">
         {info.detail.biography && (
           <>
             <h2 className="mb-2 text-2xl">Biography :</h2>
@@ -163,9 +166,9 @@ function PersonDetails() {
       </div>
       <hr className="w-[90%] text-white mx-auto mt-2 mb-10" />
 
-      <div className="w-full h-[60vh] md:px-20 my-5 px-5">
-        <div className="flex justify-between items-center w-full gap-x-10 flex-col md:flex-row">
-          <h1 className="mb-5 text-[3vh] text-white">Worked In : </h1>
+      <div className="w-full h-[60vh] md:px-20 px-5 my-5">
+        <div className="flex justify-between items-center w-full flex-col md:flex-row">
+          <h1 className="mb-5 text-2xl text-white">Worked In : </h1>
           <Dropdown
             title="Category"
             options={[

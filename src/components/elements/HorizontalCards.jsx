@@ -30,7 +30,7 @@ function HorizontalCards({ data, category = "" }) {
                 }}
                 className="md:w-[50vh] md:h-[25vh] w-[35vh] h-[20vh] rounded shrink-0 relative"
               >
-                <span className="absolute bottom-1 left-1 text-white bg-black bg-opacity-50 px-1 rounded">
+                <span className="absolute bottom-1 left-1 text-white bg-opacity-50 px-1 rounded">
                   {d.title || d.original_name || d.name}
                 </span>
               </Link>

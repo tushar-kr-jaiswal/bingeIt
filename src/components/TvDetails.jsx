@@ -85,7 +85,7 @@ function TvDetails() {
       </nav>
 
       {/* cemtre  */}
-      <div className="w-full md:max-h-[80vh] overflow-hidden lg:px-24 flex justify-center gap-x-2 mt-20 lg:flex-row flex-col px-10 mb-[40vh]">
+      <div className="w-full md:max-h-[80vh] overflow-hidden lg:px-24 flex justify-center gap-x-2 mt-20 lg:flex-row flex-col px-10 mb-[40vh] gap-y-5">
         {/* Half screen for image and platform  */}
         <div className="lg:w-4/12 h-full w-full">
           <img
@@ -212,7 +212,7 @@ function TvDetails() {
 
       {/* Seasons */}
 
-      <div className="mt-10 w-full text-white h-[70vh]">
+      <div className="mt-10 w-full text-white md:h-[75vh] h-[70vh]">
         <hr className="w-[98vw] mx-auto mb-2 text-white" />
         <h1 className="px-5 text-3xl font-bold text-white">Seasons </h1>
         <HorizontalCards data={info.detail.seasons} category="tv" />
