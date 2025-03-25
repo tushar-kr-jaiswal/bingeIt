@@ -14,7 +14,7 @@ function PersonDetails() {
   const { id } = useParams();
   const { info } = useSelector((state) => state.person);
   const [category, setCategory] = useState("movie");
-  console.log(info);
+  // console.log(info);
   // detail.original_title || title
   // detail.release_date
 
@@ -27,20 +27,6 @@ function PersonDetails() {
   }, [id]);
   return info ? (
     <div
-      // style={{
-      //     backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent), url(${
-      //         info.detail.backdrop_path || info.detail.poster_path || info.detail.profile_path
-      //             ? `https://image.tmdb.org/t/p/original/${
-      //                   info.detail.backdrop_path ||
-      //                   info.detail.poster_path ||
-      //                   info.detail.profile_path
-      //               }`
-      //             : "https://via.placeholder.com/500x300" // ✅ This ensures a fallback image
-      //     })`,
-      //     backgroundPosition: "center",
-      //     backgroundRepeat: "no-repeat",
-      //     backgroundSize: "cover",
-      // }}
       className="relative w-full min-h-screen bg-zinc-900 overflow-hidden"
     >
       <nav

@@ -38,37 +38,42 @@ function TvShows() {
     getTvShows();
   }, [category]);
 
-  return tvShows.length > 0 ? (
-    <div className="relative w-full max-h-screen bg-[#1F1E24] overflow-hidden">
-      <nav className="w-full min-h-[10vh] py-5 px-5 flex items-center fixed top-0 z-50 bg-opacity-60 backdrop-blur-xl border-0 border-gray-600 shadow-lg md:flex-row flex-col justify-center">
-        {/* Go back btn */}
-        <div className="flex gap-x-4 items-center md:px-10 md:w-2/10 w-full md:justify-normal justify-between">
-          <button onClick={() => navigate("/")} className="cursor-pointer">
+  return (
+    <div className="w-full max-h-screen pt-5 overflow-y-hidden">
+      {/* Nav and dropdowns */}
+      <nav className="flex flex-col items-center px-5 md:flex-row">
+        {/* Nav */}
+        <div className="flex items-center justify-between w-full md:w-2/12">
+          <button
+            onClick={() => navigate("/")}
+            className="md:px-5 py-0.5 bg-zinc-800 rounded-2xl cursor-pointer hover:bg-[#6556cd] duration-200 px-3"
+          >
+            {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="white"
-              className="size-8"
+              className="size-6"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
               />
             </svg>
           </button>
-          <span className="text-[3.1vh] text-white flex items-end gap-x-2">
-            Tv Shows
-          </span>
+          <h1 className="text-xl md:text-2xl">Tv Shows</h1>
         </div>
 
-        {/* Search Bar */}
-        <div className="mx-auto md:w-5/10 w-full">
+        {/* Search */}
+        <div className="w-full md:w-7/12">
           <Topnav />
         </div>
-        <div className="px-1">
+
+        {/* Dropdowns */}
+        <div className="flex w-full px-2 gap-x-3 md:w-3/12">
           <Dropdown
             title="Category"
             options={[
@@ -81,9 +86,12 @@ function TvShows() {
           />
         </div>
       </nav>
-      <div
+
+      {/* Cards */}
+      <section
         id="scrollableDiv"
-        className="w-full mt-[30vh] md:mt-[20vh] bg-[#1F1E24] overflow-auto h-[calc(100vh-30vh)] md:h-[calc(100vh-20vh)]"
+        className="w-full bg-[#1F1E24] overflow-auto"
+        style={{ height: "calc(100vh - 18vh)" }} // Ensure this height is correctly calculated
       >
         {tvShows.length === 0 ? (
           <Loader />
@@ -94,16 +102,11 @@ function TvShows() {
             hasMore={hasMore}
             loader={<Loader />}
             scrollableTarget="scrollableDiv" // Ensures only this div scrolls
-            //   threshold={100} // scroll threshold ko 100px set kiya hai
           >
             <Cards data={tvShows} title="tv" />
           </InfiniteScroll>
         )}
-      </div>
-    </div>
-  ) : (
-    <div className="w-full">
-      <Loader />
+      </section>
     </div>
   );
 }
