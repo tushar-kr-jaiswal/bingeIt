@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Topnav from "./elements/Topnav.jsx";
-import Dropdown from "./elements/Dropdown.jsx";
+import Dropdown from "./elements/Dropdown";
 import axios from "../utils/Axios.jsx";
 import Cards from "./elements/Cards.jsx";
 import Loader from "./elements/Loader.jsx";
@@ -40,38 +40,43 @@ function Trending() {
     }, [category, duration]);
 
     return (
-        <div className="relative w-full h-screen bg-[#1F1E24] overflow-hidden">
-            <nav className="w-full min-h-[10vh] py-5 md:px-5 flex items-center fixed top-0 z-50 bg-opacity-60 backdrop-blur-xl shadow-lg md:flex-row flex-col bg-[#1F1E24]">
-                {/* Go back btn */}
-                <div className="flex items-center md:px-10 md:w-2/10 gap-x-4 w-full md:flex-none justify-between px-5">
-                    <button onClick={() => navigate("/")} className="cursor-pointer">
+        <div className="w-full max-h-screen pt-5 overflow-y-hidden">
+            {/* Nav and dropdowns */}
+            <nav className="flex flex-col items-center px-5 md:flex-row">
+                {/* Nav */}
+                <div className="flex items-center justify-between w-full md:w-2/12">
+                    <button
+                        onClick={() => navigate("/")}
+                        className="md:px-5 py-0.5 bg-zinc-800 rounded-2xl cursor-pointer hover:bg-[#6556cd] duration-200 px-3"
+                    >
+                        {" "}
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="white"
-                            className="size-8"
+                            className="size-6"
                         >
                             <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
                             />
                         </svg>
                     </button>
-                    <span className="text-[3.1vh] text-white flex items-end gap-x-2">Trending</span>
+                    <h1 className="text-xl md:text-2xl">Trending</h1>
                 </div>
 
-                {/* Search Bar */}
-                <div className="mx-auto md:w-5/10 w-full">
-                    <Topnav />
+                {/* Search */}
+                <div className="w-full md:w-7/12">
+                    <SearchBar />
                 </div>
 
-                {/* Dropdown for category and duration */}
-                <div className="flex md:w-3/10 gap-x-4 w-full px-5 md:px-0">
+                {/* Dropdowns */}
+                <div className="flex w-full px-2 gap-x-3 md:w-3/12">
                     <Dropdown
-                        title="Category"
+                        title={category}
                         options={[
                             { label: "TV", value: "tv" },
                             { label: "Movie", value: "movie" },
@@ -90,8 +95,8 @@ function Trending() {
                 </div>
             </nav>
 
-            {/* Content Section */}
-            <div
+            {/* Cards */}
+            <section
                 id="scrollableDiv"
                 className="w-full mt-[1vh] md:mt-[0vh] h-[60.9vh] md:h-[calc(100vh-10vh)] bg-[#1F1E24] overflow-auto"
             >
@@ -108,7 +113,7 @@ function Trending() {
                         <Cards data={trending} title="Category" />
                     </InfiniteScroll>
                 )}
-            </div>
+            </section>
         </div>
     );
 }
